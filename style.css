@@ -1,0 +1,17 @@
+#game_background {
+  grid-area: 1/1;
+  background-color: green;
+  background-image: url(Images/Cover.png);
+  background-size: cover;
+}
+#game_elements {
+  grid-area: 1/1;
+  position: relative;
+  overflow: hidden;
+}
+#container {
+  position: absolute;
+  top: 15%;
+  left: 35%;
+  width: 20%;
+}
