@@ -1,17 +1,464 @@
+body {
+  margin: 0;
+  width: 100%;
+}
+
+h2 {
+  font-size: 4em;
+}
+
+#screen {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 1;
+  overflow: hidden;
+  cursor: url(Images/curser.png) 25 15, auto;
+}
+
+#game {
+  width: 100%;
+}
+
 #game_background {
   grid-area: 1/1;
-  background-color: green;
-  background-image: url(Images/Cover.png);
+  background-image: url(/Images/Cover.png);
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#game_elements {
+  z-index: 1;
+}
+
+#game_over {
+  grid: 1/1;
+  z-index: 999;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-image: linear-gradient(150deg, red 0%, brown 100%);
+  color: aliceblue;
+}
+
+#level_complete {
+  grid-area: 1/1;
+  z-index: 999;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-image: linear-gradient(150deg, green 0%, blue 100%);
+  color: aliceblue;
+}
+
+.hidden,
+#game_over.hidden,
+#level_complete.hidden {
+  display: none;
+}
+
+/* UI */
+#game_ui {
+  position: absolute;
+  top: 2vw;
+  right: 1vw;
+  color: white;
+
+  font-size: 2em;
+
+  pointer-events: none;
+}
+
+#score_board {
+  display: grid;
+  grid-template-columns: 100% 100%;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  margin-top: 14vh;
+  margin-left: -3vw;
+  width: 100%;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 130%;
+}
+
+#coin_count {
+  white-space: nowrap;
+  text-align: right;
+}
+
+#life_board {
+  margin-block-start: 0.2em;
+  display: grid;
+  grid-template-columns: 1.2em 1.2em 1.2em;
+}
+
+#start {
+  width: 100%;
+  background-image: url(Images/Background.png);
+  background-size: cover;
+  aspect-ratio: 16/9;
+  position: absolute;
+  z-index: 20;
+}
+
+#start_text {
+  font-size: 4vw;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #000000;
+  position: absolute;
+  top: 5vw;
+  left: 9vw;
+}
+
+#start_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20vw 20vw;
+  border: 4px;
+}
+
+.active_heart {
+  background-image: url(Images/Smile\ face.png);
+  width: 160%;
+}
+
+.broken_heart {
+  background-image: url(Images/Angry\ face.png);
+  width: 160%;
+  display: grid;
+}
+
+#start_button {
+  position: absolute;
+  top: 26vw;
+  left: 12vw;
+  background-color: #6e8979;
+  border-radius: 0;
+  border: 1px solid #0b0e0b;
+  display: inline-flex;
+  color: #ffffff;
+  font-family: "Press Start 2P", Impact, Haettenschweiler, "Arial Narrow Bold",
+    sans-serif;
+  font-size: 2vw;
+  padding: 2vw 4vw;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #914064;
+  cursor: url(Images/curser.png) 25 15, auto;
+}
+
+#start_button:hover {
+  background-color: #6a6868ef;
+}
+
+#rules {
+  width: 100%;
+  background-size: cover;
+  aspect-ratio: 16/9;
+  position: absolute;
+  z-index: 19;
+}
+
+#rules_text {
+  font-size: 4vw;
+  text-align: center;
+  font-family: "Start Now", Impact, Haettenschweiler, "Arial Narrow Bold",
+    sans-serif;
+  color: #0a413e;
+  position: absolute;
+  top: 2vw;
+  left: 30vw;
+}
+
+#rules_box {
+  background-color: rgb(52, 86, 65);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  padding: 20vw 40vw;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  border-style: solid;
+  border-color: #555;
+}
+
+#rules_sprites {
+  width: 100%;
+  position: absolute;
+  left: 0vw;
+  top: 8vw;
+}
+
+#rules_button {
+  position: absolute;
+  top: 31vw;
+  left: 31vw;
+  background-color: #5b965e;
+  border: 1px solid grey;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: "Start Now", Impact, Haettenschweiler, "Arial Narrow Bold",
+    sans-serif;
+  font-size: 2vw;
+  padding: 2vw 4vw;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #bcbabb96;
+  cursor: url(Images/Curser.png) 25 15, auto;
+}
+
+#rules_button:hover {
+  background-color: #5b9a50;
+  font-family: "Start Now", Impact, Haettenschweiler, "Arial Narrow Bold",
+    sans-serif;
+  color: #555;
+}
+
+.food_Menu {
+  display: flex;
+  align-items: left;
+  margin: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+/* Style the food image */
+.food-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+/* Style the cat customers*/
+
+.cat1 {
+  width: 100%;
+  height: 100%;
+  background-image: url(Cats/Black\ 1.png);
   background-size: cover;
 }
-#game_elements {
-  grid-area: 1/1;
-  position: relative;
-  overflow: hidden;
+
+.cat1.happy {
+  background-image: url(Cats/Black\ 2.png);
 }
-#container {
+
+.cat1.mad {
+  background-image: url(Cats/Black\ 3.png);
+}
+
+/* Style the food name and amount */
+.food-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.food-item {
   position: absolute;
-  top: 15%;
-  left: 35%;
-  width: 20%;
+  right: 110%;
+}
+
+.food-amount {
+  font-size: 18px;
+  color: #555;
+  margin-top: 5px;
+}
+
+#food1_container {
+  position: absolute;
+
+  top: -132px;
+}
+
+#food1_sprite {
+  width: 60%;
+}
+
+#food2_container {
+  position: absolute;
+
+  top: -100px;
+}
+
+#food2_sprite {
+  width: 60%;
+}
+
+#food3_container {
+  position: absolute;
+
+  top: -103px;
+}
+
+#food3_sprite {
+  width: 50%;
+}
+#food4_container {
+  position: absolute;
+
+  top: -130px;
+}
+
+#food4_sprite {
+  width: 50%;
+}
+
+#food5_container {
+  position: absolute;
+
+  top: -96px;
+}
+
+#food5_sprite {
+  width: 50%;
+}
+
+#food6_container {
+  position: absolute;
+
+  top: -150px;
+}
+
+#food6_sprite {
+  width: 50%;
+}
+#food7_container {
+  position: absolute;
+
+  top: -200px;
+}
+
+#food7_sprite {
+  width: 50%;
+}
+
+#food8_container {
+  position: absolute;
+
+  top: -174px;
+}
+
+#food8_sprite {
+  width: 50%;
+}
+
+.position1 {
+  left: 74vw;
+}
+
+.position2 {
+  left: 69vw;
+}
+.position3 {
+  left: 89vw;
+}
+.position4 {
+  left: 84vw;
+}
+.position5 {
+  left: 50vw;
+}
+.position6 {
+  left: 64vw;
+}
+.position7 {
+  left: 56vw;
+}
+.position8 {
+  left: 80vw;
+}
+
+#life1 {
+  position: relative;
+}
+
+#life2 {
+  position: relative;
+}
+
+/* Animations */
+
+.falling {
+  animation-name: falling;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+}
+
+@keyframes falling {
+  0% {
+    transform: translate(0, -100%);
+  }
+
+  100% {
+    transform: translate(0, 56.25vw);
+  }
+}
+
+.zoom_out {
+  animation-name: zoom_out;
+  animation-duration: 0.7s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes zoom_out {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.zoom_in {
+  animation-name: zoom_in;
+  animation-duration: 0.7s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  image-rendering: pixelated;
+}
+
+@keyframes zoom_in {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  90% {
+    transform: translate(100%, 0) scale(15) rotate(90deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, 0) scale(15) rotate(90deg);
+    opacity: 0;
+  }
+}
+
+.spiral {
+  animation-name: spiral;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transform-origin: 50% 150%;
+}
+
+@keyframes spiral {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(720deg) scale(0);
+  }
+}
+
+.paused {
+  animation-play-state: paused;
 }

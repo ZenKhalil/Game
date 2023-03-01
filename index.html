@@ -7,16 +7,129 @@
     <title>Food Me</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <div id="screen">
       <div id="game">
         <div id="game_background"></div>
         <div id="game_elements">
-          <div id="container">
+          <div id="foodcontainer">
             <img src="Images/Cover.png" id="cover" alt="Outside" />
+          </div>
+          <div id="food1_container" class="falling">
+            <img id="food1_sprite" src="Food/Food1.png" alt="coin" />
+          </div>
+          <div id="food2_container" class="falling">
+            <img id="food2_sprite" src="Food/Food2.png" alt="coin" />
+          </div>
+          <div id="food3_container" class="falling">
+            <img id="food3_sprite" src="Food/Food3.png" alt="coin" />
+          </div>
+          <div id="food4_container" class="falling">
+            <img id="food4_sprite" src="Food/Food4.png" alt="coin" />
+          </div>
+          <div id="food5_container" class="falling">
+            <img id="food5_sprite" src="Food/Food5.png" alt="coin" />
+          </div>
+          <div id="food6_container" class="falling">
+            <img id="food6_sprite" src="Food/Food6.png" alt="coin" />
+          </div>
+          <div id="food7_container" class="falling">
+            <img id="food7_sprite" src="Food/Food7.png" alt="coin" />
+          </div>
+          <div id="food8_container" class="falling">
+            <img id="food8_sprite" src="Food/Food8.png" alt="coin" />
+          </div>
+          <div id="heart_container">
+            <img id="heart_sprite" src="Images/Smile face.png" alt="heart" />
+          </div>
+          <div class="cat1"></div>
+          <div class="cat2"></div>
+          <div class="cat3"></div>
+          <div class="cat4"></div>
+          <div id="game_foreground"></div>
+          <div id="game_ui">
+            <div id="life_board">
+              <img
+                id="life1"
+                src="Images/Smile face.png"
+                class="active_heart"
+              />
+              <img
+                id="life2"
+                src="Images/Smile face.png"
+                class="active_heart"
+              />
+              <img
+                id="life3"
+                src="Images/Smile face.png"
+                class="active_heart"
+              />
+            </div>
+            <div id="time-board">
+              <div id="time_left"></div>
+              </div>
+            <div id="score_board">
+              <span id="point_count">0</span>
+            </div>
+            <div id="food_Menu">
+              <div class="food-item">
+        <img class="food-image" src="" alt="Food Image">
+        <div class="food-details">
+          <div class="food-name">Food 1</div>
+          <div class="food-amount">$10.99</div>
+        </div>
+      </div>
+      <div class="food-item">
+        <img class="food-image" src="" alt="Food Image">
+        <div class="food-details">
+          <div class="food-name">Food 2</div>
+          <div class="food-amount">$8.99</div>
+        </div>
+      </div>
+      <div class="food-item">
+        <img class="food-image" src="" alt="Food Image">
+        <div class="food-details">
+          <div class="food-name">Food 3</div>
+          <div class="food-amount">$12.99</div>
+        </div>
+      </div>
+      <div class="food-item">
+        <img class="food-image" src="" alt="Food Image">
+        <div class="food-details">
+          <div class="food-name">Food 4</div>
+          <div class="food-amount">$6.99</div>
+            </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+      <div id="start">
+        <div id="start_box">
+          <a href="#" id="start_button" onclick="startScreen()">START</a>
+        </div>
+      </div>
+      <div id="rules">
+        <div id="rules_box">
+          <h2 id="rules_text">Game Info</h2>
+          <img id="rules_sprites" src="Images/GameInfoo.png" alt="" />
+          <a href="#" id="rules_button" onclick="rules()">START</a>
+        </div>
+      </div>
+      <div id="game_over" class="hidden">
+        <div id="game_over_box">
+          <h2 id="game_over_text">GAME OVER</h2>
+          <p id="game_over_score"></p>
+          <a href="#" id="game_over_button" onclick="document.location.reload()">RETRY</a>
+        </div>
+      </div>
+      <div id="level_complete" class="hidden">
+        <div id="level_complete_box">
+          <h2 id="level_complete_text">LEVEL COMPLETE!</h2>
+          <p id="level_complete_score"></p>
+          <a href="#" id="level_complete_button" onclick="document.location.reload()">PLAY AGAIN</a>
+        </div>
+    <script src="game-script.js"></script>
   </body>
 </html>
