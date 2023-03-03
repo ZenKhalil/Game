@@ -3,10 +3,6 @@ body {
   width: 100%;
 }
 
-h2 {
-  font-size: 4em;
-}
-
 #screen {
   aspect-ratio: 16 / 9;
   width: 100%;
@@ -24,7 +20,7 @@ h2 {
 
 #game_background {
   grid-area: 1/1;
-  background-image: url(/Images/Cover.png);
+
   background-size: cover;
   position: absolute;
   width: 100%;
@@ -86,7 +82,7 @@ h2 {
   font-size: 130%;
 }
 
-#coin_count {
+#point_count {
   white-space: nowrap;
   text-align: right;
 }
@@ -95,6 +91,7 @@ h2 {
   margin-block-start: 0.2em;
   display: grid;
   grid-template-columns: 1.2em 1.2em 1.2em;
+  width: 100%;
 }
 
 #start {
@@ -126,7 +123,6 @@ h2 {
 }
 
 .active_heart {
-  background-image: url(Images/Smile\ face.png);
   width: 160%;
 }
 
@@ -388,7 +384,7 @@ h2 {
 
 .falling {
   animation-name: falling;
-  animation-duration: 3s;
+  animation-duration: 4s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-delay: 1s;
@@ -461,4 +457,11 @@ h2 {
 
 .paused {
   animation-play-state: paused;
+}
+
+/*
+ * 
+ */
+.absolute {
+  position: absolute;
 }

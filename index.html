@@ -9,40 +9,27 @@
   </head>
 
   <body>
+
+    <!-- 
+      Game-ground-container viser de elementer
+      som brugeren skal vælge, samt de elementer
+      de kan klikke på.
+    -->
+    <div style="display: flex; justify-content: space-between;" id="game-round-container">
+
+      <div>
+        <div id="food-list"></div>
+      </div>
+      <div id="food-selector" style="position:relative;flex-grow: 1;">
+      </div>
+    </div>
+
+
     <div id="screen">
       <div id="game">
         <div id="game_background"></div>
         <div id="game_elements">
-          <div id="foodcontainer">
-            <img src="Images/Cover.png" id="cover" alt="Outside" />
-          </div>
-          <div id="food1_container" class="falling">
-            <img id="food1_sprite" src="Food/Food1.png" alt="coin" />
-          </div>
-          <div id="food2_container" class="falling">
-            <img id="food2_sprite" src="Food/Food2.png" alt="coin" />
-          </div>
-          <div id="food3_container" class="falling">
-            <img id="food3_sprite" src="Food/Food3.png" alt="coin" />
-          </div>
-          <div id="food4_container" class="falling">
-            <img id="food4_sprite" src="Food/Food4.png" alt="coin" />
-          </div>
-          <div id="food5_container" class="falling">
-            <img id="food5_sprite" src="Food/Food5.png" alt="coin" />
-          </div>
-          <div id="food6_container" class="falling">
-            <img id="food6_sprite" src="Food/Food6.png" alt="coin" />
-          </div>
-          <div id="food7_container" class="falling">
-            <img id="food7_sprite" src="Food/Food7.png" alt="coin" />
-          </div>
-          <div id="food8_container" class="falling">
-            <img id="food8_sprite" src="Food/Food8.png" alt="coin" />
-          </div>
-          <div id="heart_container">
-            <img id="heart_sprite" src="Images/Smile face.png" alt="heart" />
-          </div>
+          
           <div class="cat1"></div>
           <div class="cat2"></div>
           <div class="cat3"></div>
@@ -80,6 +67,9 @@
           <div class="food-amount">$10.99</div>
         </div>
       </div>
+
+      
+
       <div class="food-item">
         <img class="food-image" src="" alt="Food Image">
         <div class="food-details">
@@ -130,6 +120,6 @@
           <p id="level_complete_score"></p>
           <a href="#" id="level_complete_button" onclick="document.location.reload()">PLAY AGAIN</a>
         </div>
-    <script src="game-script.js"></script>
+    <script src="gamee-script.js"></script>
   </body>
 </html>
