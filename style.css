@@ -1,28 +1,60 @@
+html {
+  cursor: url(Images/curser.png) 25 15, auto;
+}
+
 body {
   margin: 0;
   width: 100%;
+  display: grid;
+  overflow: hidden;
+  background-image: url(Images/Background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  cursor: url(Images/curser.png) 25 15, auto;
+}
+
+#game_over_button,
+#level_complete_button {
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 20px 0;
+  margin-top: 10vw;
+  display: inline-block;
+  padding: 10px 10px;
+  margin-right: 3vw;
+}
+
+h2 {
+  font-size: 4em;
 }
 
 #screen {
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  position: relative;
-  display: grid;
-  grid-template-columns: 1;
-  grid-template-rows: 1;
   overflow: hidden;
+  display: grid;
   cursor: url(Images/curser.png) 25 15, auto;
 }
 
 #game {
   width: 100%;
+  /*background-image: url(Images/Cover.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  aspect-ratio: 19/9;*/
 }
 
 #game_background {
-  grid-area: 1/1;
-
+  /*grid-area: 1/1;
+  background-image: url(Images/Cover.png);
   background-size: cover;
-  position: absolute;
+  position: absolute;*/
   width: 100%;
   height: 100%;
 }
@@ -37,8 +69,33 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
-  background-image: linear-gradient(150deg, red 0%, brown 100%);
+  background-image: url(Images/Game\ over.png);
   color: aliceblue;
+  position: absolute;
+  top: 0vw;
+  left: calc(52% - 870px);
+  width: 400px;
+  text-align: center;
+  background-size: contain;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+}
+
+#game_completed {
+  grid: 1/1;
+  z-index: 999;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-image: url(Images/Game\ over.png);
+  color: aliceblue;
+  position: absolute;
+  top: 10vw;
+  left: calc(50% - 250px);
+  width: 500px;
+  text-align: center;
+  background-size: contain;
 }
 
 #level_complete {
@@ -47,8 +104,16 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
-  background-image: linear-gradient(150deg, green 0%, blue 100%);
-  color: aliceblue;
+  background-image: url(Images/Level\ completed\ .png);
+  position: absolute;
+  top: 0vw;
+  left: calc(52% - 870px);
+  width: 400px;
+  text-align: center;
+  background-size: contain;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .hidden,
@@ -60,47 +125,51 @@ body {
 /* UI */
 #game_ui {
   position: absolute;
-  top: 2vw;
-  right: 1vw;
+  top: 6vw;
+  right: 7vw;
   color: white;
-
   font-size: 2em;
-
   pointer-events: none;
+}
+#timer_count {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 45px;
+  text-align: right;
+  position: absolute;
+  right: 44.8vw;
+  top: -2vw;
+  color: #000;
 }
 
 #score_board {
-  display: grid;
+  /*display: grid;
   grid-template-columns: 100% 100%;
   z-index: 2;
   position: absolute;
   top: 0;
-  margin-top: 14vh;
-  margin-left: -3vw;
-  width: 100%;
+  margin-top: 10vh;
+  margin-left: 6vw;*/
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 130%;
+  font-size: 50px;
+  text-align: right;
+  position: absolute;
+  right: 10vw;
+  top: 3vw;
 }
 
-#point_count {
+#coin_count {
   white-space: nowrap;
   text-align: right;
 }
 
 #life_board {
-  margin-block-start: 0.2em;
-  display: grid;
-  grid-template-columns: 1.2em 1.2em 1.2em;
-  width: 100%;
+  /*margin-block-start: 0.2em;*/
+  /*display: grid;
+  grid-template-columns: 1.2em 1.2em 1.2em;*/
 }
 
 #start {
   width: 100%;
-  background-image: url(Images/Background.png);
-  background-size: cover;
-  aspect-ratio: 16/9;
-  position: absolute;
-  z-index: 20;
 }
 
 #start_text {
@@ -123,12 +192,15 @@ body {
 }
 
 .active_heart {
-  width: 160%;
+  width: 50px;
+  position: relative;
+  top: -1vw;
+  right: 6vw;
 }
 
 .broken_heart {
   background-image: url(Images/Angry\ face.png);
-  width: 160%;
+  width: 50px;
   display: grid;
 }
 
@@ -141,7 +213,7 @@ body {
   border: 1px solid #0b0e0b;
   display: inline-flex;
   color: #ffffff;
-  font-family: "Press Start 2P", Impact, Haettenschweiler, "Arial Narrow Bold",
+  font-family: "Start", Impact, Haettenschweiler, "Arial Narrow Bold",
     sans-serif;
   font-size: 2vw;
   padding: 2vw 4vw;
@@ -155,11 +227,9 @@ body {
 }
 
 #rules {
-  width: 100%;
-  background-size: cover;
-  aspect-ratio: 16/9;
-  position: absolute;
-  z-index: 19;
+  display: none;
+  width: 80%;
+  margin: 4% auto;
 }
 
 #rules_text {
@@ -167,19 +237,14 @@ body {
   text-align: center;
   font-family: "Start Now", Impact, Haettenschweiler, "Arial Narrow Bold",
     sans-serif;
-  color: #0a413e;
-  position: absolute;
-  top: 2vw;
-  left: 30vw;
+  color: #6f3d3d;
+  margin: 20px 0 0 0;
 }
 
 #rules_box {
-  background-color: rgb(52, 86, 65);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -60%);
-  padding: 20vw 40vw;
+  text-align: center;
+  background-color: #c9c1bfda;
+  padding: 2vw 3vw;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   border-style: solid;
@@ -188,59 +253,70 @@ body {
 
 #rules_sprites {
   width: 100%;
-  position: absolute;
-  left: 0vw;
-  top: 8vw;
 }
 
 #rules_button {
-  position: absolute;
-  top: 31vw;
-  left: 31vw;
-  background-color: #5b965e;
+  background-color: #6f3d3d;
   border: 1px solid grey;
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
   font-family: "Start Now", Impact, Haettenschweiler, "Arial Narrow Bold",
     sans-serif;
-  font-size: 2vw;
-  padding: 2vw 4vw;
+  font-size: 3vw;
+  padding: 1vw 1vw;
   text-decoration: none;
   text-shadow: 0px 1px 0px #bcbabb96;
   cursor: url(Images/Curser.png) 25 15, auto;
 }
 
 #rules_button:hover {
-  background-color: #5b9a50;
+  background-color: #ffffff;
   font-family: "Start Now", Impact, Haettenschweiler, "Arial Narrow Bold",
     sans-serif;
-  color: #555;
+  color: #6f3d3d;
 }
 
-.food_Menu {
+/*.food_Menu {
   display: flex;
   align-items: left;
   margin: 10px;
   padding: 10px;
   background-color: #f0f0f0;
   border-radius: 10px;
-}
+}*/
 
 /* Style the food image */
 .food-image {
-  width: 100px;
-  height: 100px;
+  width: 40px;
+  height: 40px;
   margin-right: 20px;
+  float: left;
 }
 
 /* Style the cat customers*/
-
+#cat1,
+#cat2,
+#cat3,
+#cat4 {
+  display: none;
+  position: absolute;
+  bottom: 0vw;
+  left: 9vw;
+}
+.catImage {
+  position: absolute;
+  bottom: 5vw;
+  left: 5vw;
+  width: auto;
+}
+.catImage img {
+  width: 400px;
+}
 .cat1 {
-  width: 100%;
-  height: 100%;
-  background-image: url(Cats/Black\ 1.png);
-  background-size: cover;
+  position: absolute;
+  bottom: 0vw;
+  left: 9vw;
 }
 
 .cat1.happy {
@@ -250,28 +326,31 @@ body {
 .cat1.mad {
   background-image: url(Cats/Black\ 3.png);
 }
-
 /* Style the food name and amount */
 .food-name {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .food-item {
-  position: absolute;
-  right: 110%;
+  /*position: absolute;
+  right: 110%;*/
+  clear: both;
+  border: 1px solid #000;
+  padding: 5px;
+  background: #eee;
 }
 
 .food-amount {
   font-size: 18px;
-  color: #555;
-  margin-top: 5px;
+  /*color: #555;
+  margin-top: 5px;*/
 }
 
 #food1_container {
   position: absolute;
 
-  top: -132px;
+  top: -599px;
 }
 
 #food1_sprite {
@@ -281,7 +360,7 @@ body {
 #food2_container {
   position: absolute;
 
-  top: -100px;
+  top: -150px;
 }
 
 #food2_sprite {
@@ -291,7 +370,7 @@ body {
 #food3_container {
   position: absolute;
 
-  top: -103px;
+  top: -193px;
 }
 
 #food3_sprite {
@@ -320,7 +399,7 @@ body {
 #food6_container {
   position: absolute;
 
-  top: -150px;
+  top: -450px;
 }
 
 #food6_sprite {
@@ -339,14 +418,21 @@ body {
 #food8_container {
   position: absolute;
 
-  top: -174px;
+  top: -374px;
 }
 
 #food8_sprite {
   width: 50%;
 }
 
-.position1 {
+#food_Menu {
+  position: absolute;
+  top: 5vw;
+  left: 2vw;
+  width: 140px;
+}
+
+/*.position1 {
   left: 74vw;
 }
 
@@ -370,24 +456,24 @@ body {
 }
 .position8 {
   left: 80vw;
-}
+}*/
 
-#life1 {
+/*#life1 {
   position: relative;
 }
 
 #life2 {
   position: relative;
-}
+}*/
 
 /* Animations */
 
 .falling {
   animation-name: falling;
-  animation-duration: 4s;
+  animation-duration: 4.6s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-delay: 1s;
+  animation-delay: 0s;
 }
 
 @keyframes falling {
@@ -440,7 +526,7 @@ body {
 
 .spiral {
   animation-name: spiral;
-  animation-duration: 2s;
+  animation-duration: 0s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   transform-origin: 50% 150%;
@@ -457,11 +543,4 @@ body {
 
 .paused {
   animation-play-state: paused;
-}
-
-/*
- * 
- */
-.absolute {
-  position: absolute;
 }
