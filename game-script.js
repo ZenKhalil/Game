@@ -88,7 +88,7 @@ function rules() {
       document.querySelector("#sound_dreams").pause();
       setTimeout(function () {
         document.querySelector("#sound_game_over").pause();
-      }, 1100);
+      }, 1000);
     }
   }, 1000);
   start();
@@ -410,7 +410,7 @@ function clickFood() {
           document.querySelector("#sound_dreams").pause();
           setTimeout(function () {
             document.querySelector("#sound_game_over").pause();
-          }, 1100);
+          }, 1000);
         }
       }
     }
