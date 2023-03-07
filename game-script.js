@@ -173,10 +173,10 @@ function start() {
   let incorrectCount = 0;
   const caughtFood = [];
 
-  // Attach the click event listener to the food items
+  // Attach the mousedown event listener to the food items
   const foodItems = document.querySelectorAll(".food-item");
   foodItems.forEach((foodItem) => {
-    foodItem.addEventListener("click", function () {
+    foodItem.addEventListener("mousedown", function () {
       const food = this.dataset.food;
       if (isCorrectFood(food) && !caughtFood.includes(food)) {
         correctCount++;
@@ -202,6 +202,11 @@ function startAnimationer() {
 }
 
 function startPositioner() {
+  const screenWidth = window.innerWidth;
+  const middleArea = screenWidth / 4; // set the middle area to be one-third of the screen width
+  const minPosition = middleArea;
+  const maxPosition = middleArea * 2; // set the range of positions to be within the middle area
+
   document.querySelector("#food1_container").classList.add("position1");
   document.querySelector("#food2_container").classList.add("position2");
   document.querySelector("#food3_container").classList.add("position3");
@@ -210,49 +215,54 @@ function startPositioner() {
   document.querySelector("#food6_container").classList.add("position6");
   document.querySelector("#food7_container").classList.add("position7");
   document.querySelector("#food8_container").classList.add("position8");
+
   document.querySelector(".position1").style.left =
-    Math.floor(Math.random() * 100) + 1 + "vw";
+    getRandomPosition(minPosition, maxPosition) + "px";
   document.querySelector(".position2").style.left =
-    Math.floor(Math.random() * 100) + 1 + "vw";
+    getRandomPosition(minPosition, maxPosition) + "px";
   document.querySelector(".position3").style.left =
-    Math.floor(Math.random() * 100) + 1 + "vw";
+    getRandomPosition(minPosition, maxPosition) + "px";
   document.querySelector(".position4").style.left =
-    Math.floor(Math.random() * 100) + 1 + "vw";
+    getRandomPosition(minPosition, maxPosition) + "px";
   document.querySelector(".position5").style.left =
-    Math.floor(Math.random() * 100) + 1 + "vw";
+    getRandomPosition(minPosition, maxPosition) + "px";
   document.querySelector(".position6").style.left =
-    Math.floor(Math.random() * 100) + 1 + "vw";
+    getRandomPosition(minPosition, maxPosition) + "px";
   document.querySelector(".position7").style.left =
-    Math.floor(Math.random() * 100) + 1 + "vw";
+    getRandomPosition(minPosition, maxPosition) + "px";
   document.querySelector(".position8").style.left =
-    Math.floor(Math.random() * 100) + 1 + "vw";
+    getRandomPosition(minPosition, maxPosition) + "px";
+}
+
+function getRandomPosition(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
 function registrerKlik() {
   document
     .querySelector("#food1_container")
-    .addEventListener("click", clickFood);
+    .addEventListener("mousedown", mousedownFood);
   document
     .querySelector("#food2_container")
-    .addEventListener("click", clickFood);
+    .addEventListener("mousedown", mousedownFood);
   document
     .querySelector("#food3_container")
-    .addEventListener("click", clickFood);
+    .addEventListener("mousedown", mousedownFood);
   document
     .querySelector("#food4_container")
-    .addEventListener("click", clickFood);
+    .addEventListener("mousedown", mousedownFood);
   document
     .querySelector("#food5_container")
-    .addEventListener("click", clickFood);
+    .addEventListener("mousedown", mousedownFood);
   document
     .querySelector("#food6_container")
-    .addEventListener("click", clickFood);
+    .addEventListener("mousedown", mousedownFood);
   document
     .querySelector("#food7_container")
-    .addEventListener("click", clickFood);
+    .addEventListener("mousedown", mousedownFood);
   document
     .querySelector("#food8_container")
-    .addEventListener("click", clickFood);
+    .addEventListener("mousedown", mousedownFood);
 }
 
 function nextLevel() {
@@ -326,8 +336,8 @@ function nextLevel() {
   start();
 }
 
-// Add a click event listener to the food object
-function clickFood() {
+// Add a mousedown event listener to the food object
+function mousedownFood() {
   //console.log(this);	//console.log(document.getElementById(document.getElementById(this.id).childNodes[1].id).src.split("/").pop().split(".")[0]);
   let foodItem = document
     .getElementById(document.getElementById(this.id).childNodes[1].id)
@@ -337,8 +347,8 @@ function clickFood() {
 
   let food = this;
 
-  // Forhindr gentagne clicks
-  food.removeEventListener("click", clickFood);
+  // Forhindr gentagne mousedowns
+  food.removeEventListener("mousedown", mousedownFood);
 
   // Stop coin container
   food.classList.add("paused");
@@ -378,6 +388,12 @@ function clickFood() {
         }, 2000);
       } else if (currentLevel == 4) {
         document.getElementById("level_complete").classList.remove("hidden");
+        var sound = document.getElementById("sound_tada").play();
+        sound.play();
+        document.querySelector("#sound_dreams").pause();
+        setTimeout(function () {
+          document.querySelector("#sound_tada").pause();
+        }, 2000);
       }
     }
   } else {
@@ -429,7 +445,7 @@ function foodGone() {
 
   foodRestart.call(this);
   // gør det muligt at klikke på coin igen
-  food.addEventListener("click", clickFood);
+  food.addEventListener("mousedown", mousedownFood);
 }
 
 function foodRestart() {
